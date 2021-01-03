@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.js"></script>
+    <title>Axios</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>名称:{{info.name}}</div>
+      <div>url:{{info.url}}</div>
+      <div>
+        地址:{{info.address.country}} --->
+        {{info.address.city}}-->{{info.address.street}}
+      </div>
+      <div>
+        <ul>
+          <li v-for="link in links">
+            {{info.links.name}}---->{{info.links.url}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var vue = new Vue({
+      //   <!-- el , element缩写 ,挂载元素-->
+      el: "#app",
+      data() {
+        return {
+          info: {
+            name: "",
+            url: "",
+            address: {
+              country: "",
+              city: "",
+              street: "",
+            },
+            links: [{ name: "" }, { url: "" }],
+          },
+        };
+      },
+      mounted() {
+        axios.get("data.json").then((response) => (this.info = response.data));
+      },
+    });
+  </script>
+</html>

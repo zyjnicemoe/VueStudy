@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>事件处理</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="greet">Greet</button>
+      <!-- @是v-on的一个缩写 -->
+      <button @click="greet">简写监听事件</button>
+    </div>
+  </body>
+
+  <script>
+    var vue = new Vue({
+      //   <!-- el , element缩写 ,挂载元素-->
+      el: "#app",
+      data: {
+        name: "Vue.js",
+      },
+      //函数
+      methods: {
+        greet: function (event) {
+          //this指代vue实例
+          alert("Hello" + this.name);
+          //event原生DOM事件
+          if (event) {
+            alert(event.target.tagName);
+          }
+        },
+      },
+    });
+  </script>
+</html>
