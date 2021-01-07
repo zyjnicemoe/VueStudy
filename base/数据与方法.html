@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-<div id="app">
-    {{a}}{{b}}
-</div>
-</body>
-<script>
-var data = {a : 1,b : 2};
-var vm = new Vue({
-    el : "#app",
-    data : data
-});
-data.a = "hi ..... new ....";
-data.b = "test"
-vm.$data.b = "test1"
-vm.$watch('a',function (newVal,oldVal){
-    console.log(newVal,oldVal);
-})
-vm.$data.a = "test1"
-</script>
+  </head>
+  <body>
+    <div id="app">{{a}}{{b}}</div>
+  </body>
+  <script>
+    var data = { a: 1, b: 2 };
+    var vm = new Vue({
+      el: "#app",
+      data: data,
+    });
+    data.a = "hi ..... new ....";
+    data.b = "test";
+    vm.$data.b = "test1";
+    vm.$watch("a", function (newVal, oldVal) {
+      console.log(newVal, oldVal);
+    });
+    vm.$data.a = "test1";
+  </script>
 </html>

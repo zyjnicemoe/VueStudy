@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ foo }}</p>
+      <!-- 这里的 `foo` 不会更新！ -->
+      <!-- Object.freeze()，这会阻止修改现有的 property，也意味着响应系统无法再追踪变化 -->
+      <button v-on:click="foo = 'baz'">Change it</button>
+    </div>
+    <div id="example">{{a}}</div>
+  </body>
+  <script>
+    var obj = {
+      foo: "bar",
+    };
+    new Vue({
+      el: "#app",
+      data: obj,
+    });
+
+    Object.freeze(obj);
+
+    var data = { a: 1 };
+    var vm = new Vue({
+      el: "#example",
+      data: data,
+    });
+
+    vm.$data === data; // => true
+    vm.$el === document.getElementById("example"); // => true
+    vm.a = 2;
+    // $watch 是一个实例方法
+    vm.$watch("a", function (newValue, oldValue) {
+      // 这个回调将在 `vm.a` 改变后调用
+      console.log(newValue, oldValue);
+    });
+  </script>
+</html>
