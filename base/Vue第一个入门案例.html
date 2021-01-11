@@ -11,6 +11,7 @@
       <span v-for="item in items"> {{item.msg}} </span>
       <h3>{{url.url}}</h3>
       <h3>{{items[0].msg}}</h3>
+      <h1>{{ user }}</h1>
     </div>
   </body>
   <script src="./js/vue.js"></script>
@@ -28,6 +29,7 @@
           { msg: "14424", age: 23 },
           { msg: "nini", age: 23 },
         ],
+        user: { name: "sss", age: 20 },
       },
     });
   </script>

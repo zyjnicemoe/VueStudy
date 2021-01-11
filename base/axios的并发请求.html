@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>axios的并发请求</title>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.js"></script>
+<script>
+    //创建查询所有
+    function findall() {
+      return axios.get("http://localhost:8080/student/select/all");
+    }
+    //分页查询
+    function findAllByPage() {
+        return axios.post("http://localhost:8080/student/select/list",{
+            age: 0,
+            clazz: "",
+            id: "1",
+            limit: 5,
+            name: "李",
+            page: 1,
+            password: "",
+            sortName: "",
+            sortOrder: "DESC",
+            tel: ""
+        });
+    }
+
+    //并发请求
+    axios.all([findall(),findAllByPage()]).then(axios.spread(function (response1,response2){
+        console.log(response1.data);
+        console.log(response2.data);
+    }))
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+    });
+</script>
+</html>

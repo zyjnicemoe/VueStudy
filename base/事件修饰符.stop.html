@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>事件修饰符.stop</title>
+</head>
+<style>
+    .aa{
+        background: aquamarine;
+        width: 300px;
+        height: 300px;
+    }
+</style>
+<body>
+<div id="app">
+    <div class="aa" @click="divClick">
+        <!-- .stop用来阻止事件冒泡-->
+        <input type="button" value="按钮" @click.stop="btnClick">
+        <a href="https://www.zyjblogs.cn" @click.prevent="btnClick">enen</a>
+    </div>
+<!--
+.prevent  : 用来阻止事件的默认行为
+.once     : 用来只执行一次特定的事件
+-->
+    <a href="https://www.zyjblogs.cn" @click.prevent.once="btnClick">enen</a>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            btnClick() {
+                alert('按钮被点击了')
+            },
+            divClick() {
+                alert('div被点击了')
+            }
+        },
+
+    });
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>v-on</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="+" @click="countadd" />
+      <h2>{{count}}</h2>
+      <input type="button" value="-" @click="countreduce" />
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var vue = new Vue({
+      //element: 用来指定vue作用范围
+      el: "#app",
+      //data :用来定义vue实例中的相关数据
+      data: {
+        count: 1,
+      },
+      //methods：用来定义事件处理的函数
+      methods: {
+        countadd() {
+          if (this.count < 10) {
+            this.count++;
+          } else {
+            alert("不能在加了");
+          }
+        },
+        countreduce() {
+          if (this.count >= 1) {
+            this.count--;
+          } else {
+            alert("不能在少了");
+          }
+        },
+      },
+    });
+  </script>
+</html>

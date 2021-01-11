@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Axios的get方式请求</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+<!--        <li v-for="stu in student"> {{stu.id}}:{{stu.name}}:{{stu.age}}:{{stu.clazz}}:{{stu.tel}}:</li>-->
+    </ul>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.js"></script>
+<script>
+    //发送GET方式请求
+    axios.get("http://localhost:8080/student/select/all")
+        .then(function (response){
+            console.log(response.data);
+        })
+    .catch(function (error){
+        console.log(error);
+    })
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            // sutdent:[],
+        },
+        methods: {},
+    });
+</script>
+</html>

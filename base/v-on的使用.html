@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>v-on</title>
+  </head>
+  <body>
+    <!-- 
+          1、页面中提供按钮
+          2、按钮绑定单机事件 onclick onmouseover onhmove onkey up
+          3、在单机事件中修改年龄的值，同事渲染页面
+       -->
+    <div id="app">
+      <h2>{{ msg }}</h2>
+      <h2 v-text="msg"></h2>
+      <h2>年龄:{{age}}</h2>
+      <input type="button" value="点我改变年龄" v-on:click="ChangeAge" />
+    </div>
+  </body>
+  <script>
+    var vue = new Vue({
+      el: "#app",
+      data: {
+        msg: "逝水无痕博客",
+        age: 23,
+      },
+      // methods用来定义vue中的事件
+      methods: {
+        ChangeAge: function () {
+          // alert("单击触发");
+          //在函数中获取vue实例中data的数据 在事件函数中this就是vue实例
+          console.log(this);
+          // this.age = this.age + 1;
+          this.age++;
+        },
+      },
+    });
+  </script>
+</html>

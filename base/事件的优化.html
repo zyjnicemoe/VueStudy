@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>v-on</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{count}}</span>
+      <input type="button" value="改变count的值" @click="changecount" />
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var vue = new Vue({
+      //element: 用来指定vue作用范围
+      el: "#app",
+      //data :用来定义vue实例中的相关数据
+      data: {
+        count: 1,
+      },
+      //methods：用来定义事件处理的函数
+      methods: {
+        // changecount: function () {
+        //   this.count++;
+        // },
+        changecount() {
+          this.count++;
+        },
+      },
+    });
+  </script>
+</html>

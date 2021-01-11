@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>记事本中和案例</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg"> <input type="button" value="添加到记事本" @click="save">
+    <br>
+
+<ul>
+    <li v-for="(item,index) in lists" :key="index">
+<!--        <a href="javascript:;"></a> 可以阻止超链默认行为-->
+        {{index+1}}、{{item}} <a href="javascript:;" @click="dellthis(index)">删除</a>
+    </li>
+
+</ul>
+    <br>
+    <span>总数：{{lists.length > 0 ?lists.length:0}}条</span> <input v-if="lists.length >= 1" type="button" value="删除所有" @click="dellall">
+</div>
+<!--
+1、完成记事本的查询所有：将所有数据绑定给vue实例 2、遍历vue实例中数据到页面
+2、添加 添加按钮绑定事件中  在实践中刚刚获取输入的数据  将数据添加到lists中
+3、删除  删除所有 总数量
+-->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            lists:['逝水无痕博客发布大量文章','b站真棒'],
+            msg:'',
+        },
+        methods: {
+            dellall() {
+                this.lists = {};
+            },
+            dellthis(index) {
+                //splice（参数1，参数2） 参数1 表示从参数1下表看是删除   参数2：表示删除几个元素
+                this.lists.splice(index,1);
+                return true;
+
+            },
+            save() {
+                if (this.msg != '') {
+                    this.lists.push(this.msg);
+                    this.msg = '';
+                }
+            }
+        },
+    });
+</script>
+</html>

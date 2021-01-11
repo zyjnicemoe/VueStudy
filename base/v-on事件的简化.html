@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>v-on</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>年龄:{{age}}</h2>
+      <input
+        type="button"
+        value="通过v-on点我改变年龄每次加一"
+        v-on:click="ChangeAge"
+      />
+      <br />
+      <input
+        type="button"
+        value="通过v-on点我改变年龄每次减一"
+        @click="editAge"
+      />
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var vue = new Vue({
+      //element: 用来指定vue作用范围
+      el: "#app",
+      //data :用来定义vue实例中的相关数据
+      data: {
+        msg: "逝水无痕博客",
+        age: 23,
+      },
+      //methods：用来定义事件处理的函数
+      methods: {
+        ChangeAge: function () {
+          // alert("单击触发");
+          //在函数中获取vue实例中data的数据 在事件函数中this就是vue实例
+          console.log(this);
+          // this.age = this.age + 1;
+          this.age++;
+        },
+        editAge: function () {
+          this.age--;
+        },
+      },
+    });
+  </script>
+</html>

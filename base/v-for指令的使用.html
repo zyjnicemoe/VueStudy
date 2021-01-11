@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-for指令的使用</title>
+</head>
+<body>
+<div id="app">
+    <span>{{user.name}}{{user.age}}</span>
+    <br/>
+    <!--
+    通过v-for遍历对象
+    :key 便于vue内部做重用和排序
+    -->
+    <span v-for="(value,key,index) in user" :key="key">
+        {{index}} : 【{{key}} : {{value}}】 <br/>
+    </span>
+    <ul>
+        <li v-for="(a,index) in arr" >
+            {{index}}:{{a}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(user,index) in users" v-bind:key="user.id">
+            {{index}}【{{user.id}}:{{user.name}}:{{user.age}}:{{user.content}}】
+        </li>
+    </ul>
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            user:{name:"zhangsan",age:22},
+            arr:[
+                "武汉",
+                "北京",
+                "上海",
+            ],
+            users:[
+                {id:"1",name:"张三",age:11,content:"哈哈哈，我老牛逼了"},
+                {id:"2",name:"李四",age:22,content: "你是法外狂徒"},
+                {id:"3",name:"王五",age:23,content: "我是隔壁老王"}
+            ]
+        },
+        methods: {},
+    });
+</script>
+</html>

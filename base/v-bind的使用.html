@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>v-bind的使用</title>
+  <style>
+    .aa{
+      border: 2px red solid;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <img width="600"  :class="{aa:showCss}" :title="msg" :src="src" ></img>
+    <input type="button" value="动态控制加入样式" @click="changeCss">
+    <input type="button" value="改变图片" @click="changeSrc">
+  
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var vue = new Vue({
+    el: "#app",
+    data: {
+      msg:"逝水无痕博客壁纸",
+      showCss:true,
+      src:"https://zyjblogs.cn/wp-json/sakura/v1/image/feature?311",
+
+    },
+    methods:{
+      changeCss() {
+        this.showCss = !this.showCss;
+      },
+      changeSrc() {
+        this.src = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa4.att.hudong.com%2F27%2F67%2F01300000921826141299672233506.jpg&refer=http%3A%2F%2Fa4.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612769522&t=7716d434684a478e48b547d7f7dcd1ca";
+      }
+    }
+  });
+</script>
+</html>

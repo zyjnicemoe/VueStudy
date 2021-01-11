@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>v-html</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-html同样会将标签原始值覆盖掉 -->
+      <span v-html="msg">博客</span>
+    </div>
+  </body>
+  <script>
+    var vue = new Vue({
+      el: "#app",
+      data: {
+        msg: "<a href='http://zyjblogs.cn'>逝水无痕博客</a>",
+      },
+    });
+  </script>
+</html>
