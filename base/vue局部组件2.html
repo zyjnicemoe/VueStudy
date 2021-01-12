@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>vue局部组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <login></login>
+    <login></login>
+</div>
+<template id="loginTemplate">
+    <h2>用户登录</h2>
+</template>
+</body>
+<script>
+    //局部组件登录模板声明
+    const login = {
+        // 定义template标签选择器即可
+        template: '#loginTemplate',
+    };
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            //局部组件注册名
+            'login':login,
+        }
+    });
+</script>
+</html>

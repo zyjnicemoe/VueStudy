@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>vue的生命周期</title>
+</head>
+<body>
+<div id="app">
+    <span id="sp">{{ msg }}</span>
+    <input type="button" value="修改数据" @click="chanageData">
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg:'逝水无痕',
+        },
+        methods: {
+            chanageData() {
+                this.msg = '逝水无痕博客';
+                // this.msg = '逝水无痕博客'+Math.random();
+            }
+        },
+        //1、生命周期中的第一个函数，该函数在执行时vue实例仅仅完成自身事件绑定和生命周期函数初始化工作，vue实例中还没有 Data el methods
+        beforeCreate() {
+            console.log("beforeCreate: "+this.msg);
+        },
+        //2、生命周期中第二个函数，该函数在执行vue实例以及初始化了data属性和methods中相关方法
+        created() {
+            console.log("created: "+this.msg);
+        },
+        //3、生命周期中第三个函数，该函数在执行时Vue将el中指定作用范围作为模板编译
+        beforeMount() {
+            console.log("beforeMount: ",document.getElementById("sp").innerText);
+        },
+        //4、生命周期中第四个函数，该函数在执行过程中，已经将数据渲染到界面中并且已经更新页面
+        mounted() {
+            console.log("mounted: ",document.getElementById("sp").innerText);
+        },
+        //5、生命周期中第五个函数，该函数是data中数据发生变化时执行 这个事件执行时仅仅是vue实例中data数据变化页面显示的依然是原始数据
+        beforeUpdate() {
+            console.log("beforeUpdate:data数据："+(this.msg));
+            console.log("beforeUpdate:页面数据："+document.getElementById("sp").innerText);
+        },
+        //6、生命周期中第六个函数，该函数执行是data中的数据发生变化，页面中的数据也发生变化，data中的数据和页面中的数据一致
+        updated() {
+            console.log("updated:data数据："+(this.msg));
+            console.log("updated:页面数据："+document.getElementById("sp").innerText);
+        },
+        //7、生命周期中第七个函数，该函数执行时vue中所有数据 methods componet 都销毁
+        beforeDestroy() {
+
+        },
+        //8、生命周期中第八个函数，该函数执行时，vue实例彻底销毁
+        destroyed() {
+
+        }
+    });
+</script>
+</html>

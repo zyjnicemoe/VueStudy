@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>组件中定义组件自己的数据</title>
+</head>
+<body>
+<div id="app">
+    <login :username="username"></login>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const login = {
+        template:"<div><h1>欢迎：{{name}} ====> {{ username }}</h1></div>",
+        data() {
+            return {
+                // name:"小白",
+                name:this.username,
+            };
+        },
+        props:['username']
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            username:"张三",
+            age:23,
+        },
+        methods: {},
+        components:{
+            //注册组件
+            login
+        }
+    });
+</script>
+</html>

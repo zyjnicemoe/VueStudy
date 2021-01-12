@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>vue使用axios进行天气查询</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="cityName" @keyup.delete="shows"/> <input type="button" value="搜索" @click="searchCity"/> <br>
+    <span v-for="city in hotCitys">
+        <a href="" @click.prevent="searchCity1(city)">{{city}}</a>
+        &nbsp;&nbsp;
+    </span>
+    <br>
+    <hr>
+    <span>{{cityName}}，{{air_tips}}</span>
+<!--https://v0.yiketianqi.com/api?version=v9&appid=93399238&appsecret=TBm3Iy1z&city=武汉-->
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            hotCitys:["北京","上海","广州","深圳","武汉"],
+            cityName:'',
+            msg:'',
+            air_tips:'',
+        },
+        methods: {
+            searchCity() {
+                let _this = this;
+              //获取输入的城市信息
+                console.log(this.cityName)
+                //发送sxios请求
+                axios.get("http://www.tianqiapi.com/api?version=v6&appid=93399238&appsecret=TBm3Iy1z&city="+this.cityName)
+                .then(function (response){
+                    console.log(response.data.air_tips);
+                    _this.air_tips = response.data.air_tips;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            },
+            searchCity1(city) {
+                let _this = this;
+                _this.cityName = city;
+              //获取输入的城市信息
+                console.log(city)
+                //发送sxios请求
+                axios.get("http://www.tianqiapi.com/api?version=v6&appid=93399238&appsecret=TBm3Iy1z&city="+city)
+                .then(function (response){
+                    console.log(response.data.air_tips);
+                    _this.air_tips = response.data.air_tips;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            },
+            shows() {
+                this.isShow = false;
+            }
+        },
+    });
+</script>
+</html>
