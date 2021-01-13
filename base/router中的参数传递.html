@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>router中的参数传递</title>
+</head>
+<body>
+<div id="app">
+    <router-link to="/login?id=21&name=zhangsan" tag="button">我要登录</router-link>
+    <router-link to="/register/24/张三" tag="button">我要注册</router-link >
+    <router-view></router-view>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.js"></script>
+<script>
+    //声明组件模板
+    const login = {
+        template:'<h1>登录 编号:{{ this.$route.query.id }} 名字：{{ this.$route.query.name }}</h1>',
+        data() {
+            return {};
+        },
+        methods:{},
+        created() {
+            console.log("========>>"+this.$route.query.id+"==========>>"+this.$route.query.name);
+        }
+    };
+    const register = {
+        template: '<h1>注册 {{ this.$route.params.id }}  {{ this.$route.params.name }}</h1>',
+        created() {
+            console.log("注册组件中的id=============>>"+this.$route.params.id+"===>>"+this.$route.params.name)
+        }
+    };
+    //创建路由对象
+    const router = new VueRouter({
+        routes:[
+            // {path: '/',component: login},
+            //redirect ： 当访问默认路由‘/’时，专挑到指定的路由显示，  redirect重定向
+            {path: '/',redirect:'login'},
+            {path:'/login',component:login},
+            //RESTful方式
+            {path: '/register/:id/:name',component:register}
+        ]
+    });
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        router,
+    });
+</script>
+</html>

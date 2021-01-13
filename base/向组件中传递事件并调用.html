@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>向组件中传递事件并调用</title>
+</head>
+<body>
+<div id="app">
+    <login :name="username" @find-all="findall"></login>
+</div>
+<template id="test">
+    <div>
+        <h1>逝水无痕 {{ uname }}</h1>
+        <input type="button" value="点我" @click="change"/>
+    </div>
+</template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const login = {
+        template:"#test",
+        data() {
+            return {
+                uname:this.name,
+            };
+       },
+        props:['name'],
+        methods: {
+            change() {
+                // alert("点我了呀")
+                //调用vue实例中的函数
+                this.$emit('find-all')
+            }
+        }
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            username:'小黑',
+        },
+        methods: {
+            findall() {
+                alert("Vue 实例中定义函数")
+            }
+        },
+        components:{
+            login,
+        }
+    });
+</script>
+</html>

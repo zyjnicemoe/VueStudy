@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>router-link使用</title>
+</head>
+<body>
+<div id="app">
+    <a href="#/login">点我登录</a>
+    <a href="#/register">点我注册</a>
+    <br>
+    <router-link to="/login" tag="button">点我登录</router-link>
+    <router-link to="/register" tag="button">点我注册</router-link >
+
+    <!--
+    router-link标签  好处： 不需要书写路由路径#号 to: 用来书写路由路径
+    -->
+
+
+    <!--    显示路由的组件-->
+    <router-view></router-view>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.js"></script>
+<script>
+    //声明组件
+    const login = {
+        template:'<h1>用户登录</h1>'
+    }
+    const register = {
+        template: '<h1>用户注册</h1>'
+    }
+    //创建路由对象
+    const router = new VueRouter({
+        routes:[
+            // {path: '/',component: login},
+            //redirect ： 当访问默认路由‘/’时，专挑到指定的路由显示，  redirect重定向
+            {path: '/',redirect:'login'},
+            {path:'/login',component:login},
+            {path: '/register',component:register}
+        ]
+    })
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        //注册路由
+        router,
+    });
+</script>
+</html>
