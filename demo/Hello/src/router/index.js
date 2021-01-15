@@ -17,7 +17,7 @@ export default new Router({
     },
     {
       path: '/user',
-      component: User,
+      component: User
     },
     {
       path: '/student',
